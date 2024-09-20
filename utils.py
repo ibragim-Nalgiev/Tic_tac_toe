@@ -51,7 +51,7 @@ def game_with_computers(field: list[list[Any]], player_sigh: int, computer_sigh:
     """
     while True:
         step = tuple(
-            map(int, input("Выберете координаты(два числа от 0 до 2), куда будет поставлен ваш символ: ").split()))
+            map(int, input("Выберите координаты(два числа от 0 до 2), куда будет поставлен ваш символ: ").split()))
         r, c = step
         if field[r][c] != '#':
             print("Это клетка уже занята")
@@ -69,13 +69,13 @@ def game_with_computers(field: list[list[Any]], player_sigh: int, computer_sigh:
     return field
 
 
-def game_between_two_players(field: list[list[Any]], player1_sigh: int = 1, player2_sigh: int = 2) -> None:
+def step_first_player(field: list[list[Any]], player1_sigh: int = 1) -> None:
     """
-    Функционал, когда играют сразу два игрока. По очереди делают ходы первый и второй игроки.
+    Для хода первого игрока.
     """
     while True:
         step1 = tuple(map(int, input(
-            "Игрок1: выберете координаты(два числа от 0 до 2), куда будет поставлен ваш символ: ").split()))
+            "Игрок1: выберите координаты(два числа от 0 до 2), куда будет поставлен ваш символ: ").split()))
         r, c = step1
         if field[r][c] != '#':
             print("Это клетка уже занята")
@@ -84,9 +84,14 @@ def game_between_two_players(field: list[list[Any]], player1_sigh: int = 1, play
             field[r][c] = player1_sigh
             break
 
+
+def step_second_player(field: list[list[Any]], player2_sigh: int = 2) -> None:
+    """
+    Для хода второго игрока.
+    """
     while True:
         step2 = tuple(map(int, input(
-            "Игрок2: выберете координаты(два числа от 0 до 2), куда будет поставлен ваш символ: ").split()))
+            "Игрок2: выберите координаты(два числа от 0 до 2), куда будет поставлен ваш символ: ").split()))
         r, c = step2
         if field[r][c] != '#':
             print("Это клетка уже занята")
@@ -106,5 +111,3 @@ def choice_game_field(count_players: int = 1):
 
     if count_players == 1:
         return game_with_computers
-    else:
-        return game_between_two_players
